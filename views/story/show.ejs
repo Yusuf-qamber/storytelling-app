@@ -1,0 +1,22 @@
+<%- include('../partials/head') %>
+
+<div class="container mt-4" style="max-width: 700px;">
+  <h2 class="text-center mb-3"><%= foundStory.title %></h2>
+
+
+  <p class="lead"><%= foundStory.genre %></p>
+  <p> <%= foundStory.date %></p>
+  <p><strong>Author:</strong> <%= foundStory.author.username %></p>
+  <p> <%=foundStory.story%></p>
+
+  <a href="/story" class="btn btn-secondary mt-3">Back to Stories</a>
+</div>
+
+<% if (foundStory.author._id.equals(user._id)) { %>
+  <form action="/story/<%= foundStory._id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+<% } %>
+
+</body>
+</html>

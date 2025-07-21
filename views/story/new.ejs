@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StoryTelling</title>
+  </head>
+  <body>
+    <form action="/story" method="Post" class="container mt-4" style="max-width: 600px;">
+      <h2  class="mb-4">Add a new Story</h2>
+
+      <div class="mb-3">
+        <label for="title">Story Title:</label>
+        <input type="text" id="title" name="title" required />    
+      </div>
+
+      <div class="mb-3">
+        <label for="date">Date: </label>
+        <input type="date" id="date" name="date" />
+      </div>
+
+      <div class="mb-3">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" />
+      </div>
+
+      <div class="mb-3">
+        <label for="story">The story:</label>
+        <textarea name="story" id="story"></textarea>
+      </div>
+      
+      <button type="submit">Create story</button>
+    </form>
+  </body>
+</html>
