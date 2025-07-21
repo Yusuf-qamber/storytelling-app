@@ -89,4 +89,14 @@ router.put("/:storyId", isSignedIn, async (req, res) => {
   }
 });
 
+// POST COMMENT FORM TO THE DATABASE
+router.post("/:storyId/comments",isSignedIn,async(req,res)=>{
+  const foundStory= await Story.findById(req.params.storyId)
+  req.body.author=req.session.user._id
+  foundStory.comments.push(req.body)
+  await foundStory.save()
+  res.redirect(`/story/${req.params.storyId}`)
+})
+
+
 module.exports = router;
