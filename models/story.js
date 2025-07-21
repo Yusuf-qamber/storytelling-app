@@ -5,7 +5,7 @@ const storySchema = new Schema(
   {
     title: { type: String, required: true },
     date: String,
-    gerne: String,
+    genre: String,
     story: { type: String, required: true },
     author: {
       type: Schema.Types.ObjectId,

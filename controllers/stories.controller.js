@@ -58,11 +58,34 @@ router.delete("/:storyId", isSignedIn, async (req, res) => {
   );
 
   if (foundStory.author._id.equals(req.session.user._id)) {
-
     await foundStory.deleteOne();
     return res.redirect("story");
   } else {
     return res.send("Not authorized");
+  }
+});
+
+// RENDER THE EDIT FORM VIEW
+router.get("/:storyId/edit", isSignedIn, async (req, res) => {
+  const foundStory = await Story.findById(req.params.storyId).populate(
+    "author"
+  );
+  if (foundStory.author._id.equals(req.session.user._id)) {
+    return res.render("story/edit.ejs", { foundStory: foundStory });
+  }
+  return res.send("Not authorized");
+});
+
+// HANDLE EDIT FORM SUBMISSION
+
+router.put("/:storyId", isSignedIn, async (req, res) => {
+  const foundStory = await Story.findById(req.params.storyId).populate(
+    "author"
+  );
+
+  if (foundStory.author._id.equals(req.session.user._id)) {
+    await Story.findByIdAndUpdate(req.params.storyId, req.body, { new: true });
+    return res.redirect(`/story/${req.params.storyId}`);
   }
 });
 

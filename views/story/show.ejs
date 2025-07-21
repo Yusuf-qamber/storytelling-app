@@ -14,6 +14,7 @@
 
 <% if (foundStory.author._id.equals(user._id)) { %>
   <form action="/story/<%= foundStory._id %>?_method=DELETE" method="POST">
+    <a href="/story/<%= foundStory._id %>/edit" class="btn btn-warning">Edit</a>
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
 <% } %>
