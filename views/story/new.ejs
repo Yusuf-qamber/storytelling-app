@@ -31,14 +31,28 @@
       </div>
 
       <div class="form-floating mb-3">
-        <input
+        <!-- <input
           type="text"
           class="form-control rounded-3"
           id="genre"
           name="genre"
           placeholder="Genre"
-        />
-        <label for="genre">Genre</label>
+        /> -->
+
+     <select
+        class="form-select rounded-3"
+        id="genre"
+        name="genre"
+        aria-label="Select genre"
+      >
+        <!-- <option value="" selected disabled>Choose genre<option> -->
+        <option value="Horror">Horror</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fantasy">Fantasy</option>
+  </select>
+  <label for="genre">Genre</label>
       </div>
 
       <div class="form-floating mb-4">

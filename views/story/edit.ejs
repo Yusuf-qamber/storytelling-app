@@ -1,16 +1,50 @@
 <%- include('../partials/head') %>
 
-<div class="modal-content rounded-4 shadow container mt-5" style="max-width: 900px;">
-  <div class="modal-header p-5 pb-4 border-bottom-0">
-    <h1 class="fw-bold mb-0 fs-2">Edit <%= foundStory.title %></h1>
-  </div>
-  <div class="modal-body p-5 pt-0">
+<style>
+  body {
+    background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .edit-wrapper {
+    width: 100%;
+    max-width: 900px; 
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+  }
+
+  .form-floating label {
+    font-weight: 500;
+    color: #495057;
+  }
+
+  .btn-custom {
+    background-color: #0077b6;
+    border: none;
+  }
+
+  .btn-custom:hover {
+    background-color: #023e8a;
+  }
+
+  h1 {
+    color: #023e8a;
+    font-weight: 700;
+  }
+</style>
+
+<div class="container d-flex justify-content-center">
+  <div class="edit-wrapper">
+    <h1 class="text-center mb-4">Edit “<%= foundStory.title %>”</h1>
     <form action="/story/<%= foundStory._id %>?_method=PUT" method="POST">
       
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-4">
         <input
           type="text"
-          class="form-control rounded-3"
+          class="form-control"
           id="title"
           name="title"
           value="<%= foundStory.title %>"
@@ -20,10 +54,10 @@
         <label for="title">Story Title</label>
       </div>
 
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-4">
         <input
           type="date"
-          class="form-control rounded-3"
+          class="form-control"
           id="date"
           name="date"
           value="<%= foundStory.date%>"
@@ -32,35 +66,39 @@
         <label for="date">Date</label>
       </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control rounded-3"
+      <div class="form-floating mb-4">
+        <select
+          class="form-select"
           id="genre"
           name="genre"
-          value="<%= foundStory.genre %>"
-          placeholder="Genre"
-        />
+          aria-label="Select genre"
+        >
+          <% const genres = ['Horror', 'Drama', 'Comedy', 'Adventure', 'Fantasy']; %>
+          <% genres.forEach(g => { %>
+            <option value="<%= g %>" <%= foundStory.genre === g ? 'selected' : '' %>><%= g %></option>
+          <% }); %>
+        </select>
         <label for="genre">Genre</label>
       </div>
 
       <div class="form-floating mb-4">
         <textarea
-          class="form-control rounded-3"
+          class="form-control"
           placeholder="Edit your story"
           id="story"
           name="story"
-          style="height: 150px"
+          style="height: 200px"
         ><%= foundStory.story %></textarea>
-        <!-- <label for="story">The story</label> -->
+        <label for="story">The story</label>
       </div>
 
-      <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
-        Update story
+      <button class="btn btn-custom w-100 py-2" type="submit">
+        Update Story
       </button>
     </form>
   </div>
 </div>
+
 
 </body>
 </html>

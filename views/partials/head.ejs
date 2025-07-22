@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,35 +30,33 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav me-auto">
-            <!-- Link to All stories will go here later -->
-             
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item"><a class="nav-link" href="/story">All Stories</a></li>
-              <% if (user) { %>
-              <li class="nav-item"><a class="nav-link" href="/story/new">Add a Story</a></li>
-              <% } %>
-            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/story">All Stories</a>
+            </li>
+            <% if (user) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/story/new">Add a Story</a>
+              </li>
+            <% } %>
+          </ul>
 
           <ul class="navbar-nav ms-auto">
             <% if (user) { %>
-            <li class="nav-item">
-              <span class="nav-link disabled"
-                >Welcome, <%= user.username %>!</span
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/sign-out">Sign Out</a>
-            </li>
+              <li class="nav-item">
+                <span class="nav-link disabled">Welcome, <%= user.username %>!</span>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/sign-out">Sign Out</a>
+              </li>
             <% } else { %>
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/sign-in">Sign In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/sign-up">Sign Up</a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/sign-in">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/sign-up">Sign Up</a>
+              </li>
             <% } %>
           </ul>
         </div>
       </div>
     </nav>
-

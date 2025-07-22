@@ -1,7 +1,7 @@
 <%- include('../partials/head') %>
 
 <div class="container mt-4" style="max-width: 1000px;">
-  <h2 class="text-center mb-3"><%= foundStory.title %></h2>
+  <h1 class="text-center mb-3"><%= foundStory.title %></h1>
 
 
   <p class="lead"><%= foundStory.genre %></p>
@@ -21,33 +21,53 @@
 <% } %>
 
 <h3 class="text-center">Leave a Comment</h3>
+<div class="container mt-4" style="max-width: 1000px;">
 <form action="/story/<%= foundStory._id %>/comments" method="POST" class="mb-4">
   <div class="mb-3">
     <textarea name="content" class="form-control" rows="3" required></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Post Comment</button>
 </form>
+</div>
 
 <h3 class="text-center">Comments</h3>
+<div class="container mt-4" style="max-width: 1000px;">
 <ul class="list-group">
-  <% foundStory.comments.forEach((comment) => { %>
+  <% foundStory.comments.forEach((comment, index) => { %>
     <li class="list-group-item">
-      <%= comment.content %> — <em><%= comment.commenter.username %></em>
-  <% if (comment.commenter._id.equals(user._id)) { %>
-        <!-- Edit Form -->
-        <form action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=PUT" method="POST" class="mt-2">
-          <input type="text" name="content" value="<%= comment.content %>" class="form-control mb-2" required />
-          <button class="btn btn-warning btn-sm" type="submit">Update</button>
-        </form>
+      <p><%= comment.commenter.username %></p>
+      <p><%= comment.content %> </p>
 
-        <!-- Delete Form -->
-        <form action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" class="mt-2">
-          <button class="btn btn-danger btn-sm">Delete</button>
+      <% if (comment.commenter._id.equals(user._id)) { %>
+        <div class="comment-actions">
+          <button class="btn btn-warning btn-sm" type="button" onclick="toggleUpdateForm(<%= index %>)">Update</button>
+          <form action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </div>
+
+        <form
+          action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=PUT"
+          method="POST"
+          class="comment-update-form"
+          id="update-form-<%= index %>"
+        >
+          <input type="text" name="content" value="<%= comment.content %>" required />
+          <button class="btn btn-warning btn-sm" type="submit">Save</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="toggleUpdateForm(<%= index %>)">Cancel</button>
         </form>
       <% } %>
     </li>
   <% }) %>
 </ul>
 
+<script>
+  function toggleUpdateForm(index) {
+    const form = document.getElementById(`update-form-${index}`);
+    form.classList.toggle('active');
+  }
+</script>
+
+    </div>
 </body>
 </html>
