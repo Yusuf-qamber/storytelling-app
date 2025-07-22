@@ -1,12 +1,13 @@
 <%- include('../partials/head') %>
 
-<div class="container mt-4" style="max-width: 700px;">
+<div class="container mt-4" style="max-width: 1000px;">
   <h2 class="text-center mb-3"><%= foundStory.title %></h2>
 
 
   <p class="lead"><%= foundStory.genre %></p>
-  <p> <%= foundStory.date %></p>
-  <p><strong>Author:</strong> <%= foundStory.author.username %></p>
+  <p><strong>Published by:</strong> <%= foundStory.author.username %></p>
+  <p>Published on: <%= foundStory.date %></p>
+  
   <p> <%=foundStory.story%></p>
 
   <a href="/story" class="btn btn-secondary mt-3">Back to Stories</a>
@@ -18,6 +19,35 @@
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
 <% } %>
+
+<h3 class="text-center">Leave a Comment</h3>
+<form action="/story/<%= foundStory._id %>/comments" method="POST" class="mb-4">
+  <div class="mb-3">
+    <textarea name="content" class="form-control" rows="3" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Post Comment</button>
+</form>
+
+<h3 class="text-center">Comments</h3>
+<ul class="list-group">
+  <% foundStory.comments.forEach((comment) => { %>
+    <li class="list-group-item">
+      <%= comment.content %> — <em><%= comment.commenter.username %></em>
+  <% if (comment.commenter._id.equals(user._id)) { %>
+        <!-- Edit Form -->
+        <form action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=PUT" method="POST" class="mt-2">
+          <input type="text" name="content" value="<%= comment.content %>" class="form-control mb-2" required />
+          <button class="btn btn-warning btn-sm" type="submit">Update</button>
+        </form>
+
+        <!-- Delete Form -->
+        <form action="/story/<%= foundStory._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" class="mt-2">
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
 
 </body>
 </html>

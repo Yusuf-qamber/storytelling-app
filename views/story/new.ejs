@@ -1,35 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StoryTelling</title>
-  </head>
-  <body>
-    <form action="/story" method="Post" class="container mt-4" style="max-width: 600px;">
-      <h2  class="mb-4">Add a new Story</h2>
+<%- include('../partials/head') %>
 
-      <div class="mb-3">
-        <label for="title">Story Title:</label>
-        <input type="text" id="title" name="title" required />    
-      </div>
-
-      <div class="mb-3">
-        <label for="date">Date: </label>
-        <input type="date" id="date" name="date" />
-      </div>
-
-      <div class="mb-3">
-        <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre" />
-      </div>
-
-      <div class="mb-3">
-        <label for="story">The story:</label>
-        <textarea name="story" id="story"></textarea>
-      </div>
+<div class="modal-content rounded-4 shadow container mt-5" style="max-width: 600px;">
+  <div class="modal-header p-5 pb-4 border-bottom-0">
+    <h1 class="fw-bold mb-0 fs-2">Add a new Story</h1>
+  </div>
+  <div class="modal-body p-5 pt-0">
+    <form action="/story" method="POST">
       
-      <button type="submit">Create story</button>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control rounded-3"
+          id="title"
+          name="title"
+          placeholder="Story Title"
+          required
+        />
+        <label for="title">Story Title</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control rounded-3"
+          id="date"
+          name="date"
+          placeholder="Date"
+        />
+        <label for="date">Date</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control rounded-3"
+          id="genre"
+          name="genre"
+          placeholder="Genre"
+        />
+        <label for="genre">Genre</label>
+      </div>
+
+      <div class="form-floating mb-4">
+        <textarea
+          class="form-control rounded-3"
+          placeholder="Write your story here"
+          id="story"
+          name="story"
+          style="height: 150px"
+        ></textarea>
+        <label for="story">The story</label>
+      </div>
+
+      <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">
+        Create story
+      </button>
+    </form>
+  </div>
+</div>
+
     </form>
   </body>
 </html>

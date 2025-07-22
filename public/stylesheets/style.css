@@ -3,13 +3,12 @@ body {
   text-align: center;
 }
 
-.listing-img {
-  width: 50vw;
-}
-
 ul {
   margin: 0px;
   padding: 0px;
+}
+p {
+  font-size: 22px;
 }
 
 li {

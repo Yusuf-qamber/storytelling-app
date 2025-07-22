@@ -41,9 +41,9 @@ router.get("/", async (req, res) => {
 
 router.get("/:storyId", async (req, res) => {
   try {
-    const foundStory = await Story.findById(req.params.storyId).populate(
-      "author"
-    );
+    const foundStory = await Story.findById(req.params.storyId)
+      .populate("author")
+      .populate("comments.commenter");
     res.render("story/show.ejs", { foundStory });
   } catch (error) {
     console.log(error);
@@ -90,13 +90,41 @@ router.put("/:storyId", isSignedIn, async (req, res) => {
 });
 
 // POST COMMENT FORM TO THE DATABASE
-router.post("/:storyId/comments",isSignedIn,async(req,res)=>{
-  const foundStory= await Story.findById(req.params.storyId)
-  req.body.author=req.session.user._id
-  foundStory.comments.push(req.body)
-  await foundStory.save()
-  res.redirect(`/story/${req.params.storyId}`)
-})
+router.post("/:storyId/comments", isSignedIn, async (req, res) => {
+  const foundStory = await Story.findById(req.params.storyId)
+    .populate("author")
+    .populate("comments.commenter");
+  req.body.commenter = req.session.user._id;
+  foundStory.comments.push(req.body);
+  await foundStory.save();
+  res.redirect(`/story/${req.params.storyId}`);
+});
+// UPDATE a COMMENT
+router.put("/:storyId/comments/:commentId", isSignedIn, async (req, res) => {
+  const foundStory = await Story.findById(req.params.storyId);
+  const comment = foundStory.comments.id(req.params.commentId);
 
+  if (comment.commenter.equals(req.session.user._id)) {
+    comment.content = req.body.content;
+    await foundStory.save();
+    res.redirect(`/story/${req.params.storyId}`);
+  } else {
+    res.send("Not authorized");
+  }
+});
+
+// DELETE a COMMENT
+router.delete("/:storyId/comments/:commentId", isSignedIn, async (req, res) => {
+  const foundStory = await Story.findById(req.params.storyId);
+  const comment = foundStory.comments.id(req.params.commentId);
+
+  if (comment.commenter.equals(req.session.user._id)) {
+    comment.deleteOne();
+    await foundStory.save();
+    res.redirect(`/story/${req.params.storyId}`);
+  } else {
+    res.send("Not authorized");
+  }
+});
 
 module.exports = router;
