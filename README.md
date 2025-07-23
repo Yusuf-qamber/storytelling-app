@@ -6,7 +6,7 @@
 👉 **Planning Materials:**
 
 - [User Stories](/userStories.md)
-- [Wireframe](/Wireframe)
+- [Wireframe](Wireframe)
 
 ## Description
 
