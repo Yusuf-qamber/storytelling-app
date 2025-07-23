@@ -14,7 +14,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= story.title %></h5>
                 <p class="card-text"><%= story.genre %></p>
-                <p class="card-text"><strong><%= story.date%> </strong></p>
+                <p class="card-text"><strong><%= story.createdAt.toDateString()%> </strong></p>
                 <p class="card-text"><%= story.author.username %></p>
                 <!-- Button to view listing will be broken until next section -->
 
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="button-wraper">
-        <a href="/story" class="btn btn-secondary mt-3 back-to-stories ">Back to Stories</a>
+        
       </div>
       
     </div>

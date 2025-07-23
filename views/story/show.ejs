@@ -1,16 +1,19 @@
 <%- include('../partials/head') %>
 
 <div class="container mt-4" style="max-width: 1000px;">
-  <h1 class="text-center mb-3"><%= foundStory.title %></h1>
+  <h1 class="text-center mb-3 center"><%= foundStory.title %></h1>
 
 
   <p class="lead"><%= foundStory.genre %></p>
   <p><strong>Published by:</strong>
      <a  href="/story/profile/<%=foundStory.author._id%>"><%= foundStory.author.username %></a>
     </p>
-  <p>Published on: <%= foundStory.date %></p>
+  <p>Published on: <%= foundStory.createdAt.toDateString() %></p>
   
-  <p> <%=foundStory.story%></p>
+  <div class="story-content text-justify" style="white-space: pre-line; text-align: center;">
+  <%= foundStory.story %>
+</div>
+
 
   <a href="/story" class="btn btn-secondary mt-3">Back to Stories</a>
   <i class="bi bi-save">
@@ -49,7 +52,10 @@
 <ul class="list-group">
   <% foundStory.comments.forEach((comment, index) => { %>
     <li class="list-group-item">
-      <p><%= comment.commenter.username %></p>
+     <a href="/story/profile/<%= comment.commenter._id %>" class="comment-author-link">
+  <%= comment.commenter.username %>
+</a>
+
       <p><%= comment.content %> </p>
       <%if(user){%>
       <% if (comment.commenter._id.equals(user._id)) { %>

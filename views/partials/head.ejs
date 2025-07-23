@@ -43,7 +43,7 @@
             <% if (user) { %>
             <li class="nav-item">
              
-                 <a href="/story/profile/<%= user._id%>" class="nav-link" > Welcome,<%= user.username %>!</a>
+                 <a href="/story/profile/<%= user._id%>" class="nav-link" > Welcome <%= user.username %>!</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/auth/sign-out">Sign Out</a>

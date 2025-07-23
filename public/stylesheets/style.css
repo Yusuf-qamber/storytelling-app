@@ -6,6 +6,7 @@ body {
   padding: 0;
   text-align: center;
   min-height: 100vh;
+  font-family: "Raleway", sans-serif;
 }
 
 .navbar {
@@ -209,8 +210,35 @@ a:hover {
 .button-wraper {
   display: flex;
 }
+.story-content {
+  text-align: center;
+  white-space: pre-line;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
 p {
   text-align: center;
+}
+.meta-info {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+  text-align: left;
+}
+
+.meta-info.genre {
+  font-style: italic;
+  color: #6c757d;
+}
+
+.meta-wrapper {
+  background-color: #f1f5f9;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
