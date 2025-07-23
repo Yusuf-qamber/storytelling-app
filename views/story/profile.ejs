@@ -1,0 +1,36 @@
+<%- include('../partials/head') %>
+    <div class="container mt-4" style="max-width: 1000px">
+      <h1 class="text-center mb-3">Profile: <%= foundUser.username %></h1>
+
+      <h3 class="text-center mb-4">Age: <%= foundUser.age %></h3>
+
+      <div class="container mt-4">
+        <h1 class="text-center mb-4">Stories</h1>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <% stories.forEach((story) => { %>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title"><%= story.title %></h5>
+                <p class="card-text"><%= story.genre %></p>
+                <p class="card-text"><strong><%= story.date%> </strong></p>
+                <p class="card-text"><%= story.author.username %></p>
+                <!-- Button to view listing will be broken until next section -->
+
+                <a href="/story/<%= story._id %>" class="btn btn-primary"
+                  >View Story</a
+                >
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="button-wraper">
+        <a href="/story" class="btn btn-secondary mt-3 back-to-stories ">Back to Stories</a>
+      </div>
+      
+    </div>
+  </body>
+</html>

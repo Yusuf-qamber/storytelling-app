@@ -205,6 +205,13 @@ a:hover {
   color: #ff0000;
   text-decoration: none;
 }
+/*  */
+.button-wraper {
+  display: flex;
+}
+p {
+  text-align: center;
+}
 
 @media (max-width: 768px) {
   .modal-content,

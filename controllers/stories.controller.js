@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const isSignedIn = require("../middleware/is-signed-in");
 const Story = require("../models/story");
+const User = require("../models/user");
 
 // ADDING A STORY
 router.get("/new", isSignedIn, (req, res) => {
@@ -50,6 +51,20 @@ router.get("/:storyId", async (req, res) => {
     res.redirect("/story");
   }
 });
+
+// VIEW  USER PROFILE
+router.get("/profile/:userId", async (req, res) => {
+  const foundUser = await User.findById(req.params.userId).lean();
+  const stories= await Story.find({author:req.params.userId}).lean()
+  res.render("story/profile.ejs", {  foundUser ,stories});
+});
+
+// SAVE a STORY
+// router.get("/saved.ejs" async (req,res)=>{
+//   try{
+//     const
+//   }
+// })
 
 // DELETE A STORY FROM THE DATABASE
 router.delete("/:storyId", isSignedIn, async (req, res) => {
