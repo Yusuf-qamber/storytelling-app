@@ -11,7 +11,7 @@
 ## Description
 
 Storytelling is a storytelling platform where users can write, share, and read original stories. Whether you're a writer looking to express your creativity or a reader exploring new genres, the app offers a space to connect through the power of storytelling. Users can create profiles, comment on stories, and more.
-paraphrase it
+
 
 
 ### Instructions 
