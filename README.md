@@ -28,7 +28,7 @@ This storytelling web application allows users to sign up, log in, and share the
 - Bootstraps
 - MongoDB
 - Heroku
-- 
+- ejs
 
 
 ## 🚧 Next Steps
